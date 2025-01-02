@@ -50,7 +50,7 @@ variable "ami_id" {
 
 variable "instance_type" {
   description = "EC2 instance type"
-  default     = "t3.medium"
+  default     = "t2.medium"
 }
 
 variable "key_pair_name" {
