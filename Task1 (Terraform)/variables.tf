@@ -5,7 +5,7 @@ variable "aws_region" {
 
 variable "s3_bucket_name" {
   description = "S3 bucket name to store Terraform state"
-  default     = "terraformstate_bucket_SM22"
+  default     = "terraformstate-bucket-sm"
 }
 
 variable "vpc_cidr" {
