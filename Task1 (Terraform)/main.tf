@@ -168,6 +168,13 @@ resource "aws_instance" "bastion" {
   security_groups = [
     aws_security_group.bastion_sg.name
   ]
+
+  root_block_device {
+    volume_size           = 20  # 30GB Storage
+    volume_type           = "gp3"
+    delete_on_termination = true
+  }
+  
   tags = {
     Name = "bastion"
   }
@@ -182,6 +189,13 @@ resource "aws_instance" "jenkins" {
   security_groups = [
     aws_security_group.private_sg.name
   ]
+
+  root_block_device {
+    volume_size           = 20  # 30GB Storage
+    volume_type           = "gp3"
+    delete_on_termination = true
+  }
+
   tags = {
     Name = "jenkins"
   }
@@ -196,6 +210,13 @@ resource "aws_instance" "app" {
   security_groups = [
     aws_security_group.private_sg.name
   ]
+
+  root_block_device {
+    volume_size           = 20  # 30GB Storage
+    volume_type           = "gp3"
+    delete_on_termination = true
+  }
+
   tags = {
     Name = "app"
   }
