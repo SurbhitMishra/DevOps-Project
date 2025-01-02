@@ -165,16 +165,16 @@ resource "aws_instance" "bastion" {
   instance_type = var.instance_type
   subnet_id     = aws_subnet.public_subnet_1.id
   key_name      = var.key_pair_name
-  security_groups = [
-    aws_security_group.bastion_sg.name
-  ]
+
+  # using sg id since both subnet name and sg name cannot be cannot specified together.
+  vpc_security_group_ids = [aws_security_group.bastion_sg.id]
 
   root_block_device {
     volume_size           = 20  # 30GB Storage
     volume_type           = "gp3"
     delete_on_termination = true
   }
-  
+
   tags = {
     Name = "bastion"
   }
@@ -186,9 +186,9 @@ resource "aws_instance" "jenkins" {
   instance_type = var.instance_type
   subnet_id     = aws_subnet.private_subnet_1.id
   key_name      = var.key_pair_name
-  security_groups = [
-    aws_security_group.private_sg.name
-  ]
+
+  # using sg id since both subnet name and sg name cannot be cannot specified together.
+  vpc_security_group_ids = [aws_security_group.private_sg.id]
 
   root_block_device {
     volume_size           = 20  # 30GB Storage
@@ -207,9 +207,9 @@ resource "aws_instance" "app" {
   instance_type = var.instance_type
   subnet_id     = aws_subnet.private_subnet_2.id
   key_name      = var.key_pair_name
-  security_groups = [
-    aws_security_group.private_sg.name
-  ]
+
+  # using sg id since both subnet name and sg name cannot be cannot specified together.
+  vpc_security_group_ids = [aws_security_group.private_sg.id]
 
   root_block_device {
     volume_size           = 20  # 30GB Storage
